@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:netgrow/Sensors_widgets/humidity_widget.dart';
 import 'file:///F:/Git/NetGrow/netgrow/lib/Sensors_widgets/light_widget.dart';
 import 'package:netgrow/Sensors_widgets/temp_widget.dart';
 
@@ -18,7 +19,7 @@ class DashboardRoute extends StatefulWidget {
 }
 
 class _DashboardRouteState extends State<DashboardRoute> {
-  int _counter = 0;
+  // int _counter = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -38,8 +39,9 @@ class _DashboardRouteState extends State<DashboardRoute> {
     );
 
     var _tempTile = Row (key: Key("Temp"),children: [ TemperatureWidget(nombre: "1", temperature: 40.00) ,  TemperatureWidget(nombre: "2", temperature: 30.00)],);
+    var _humTile = Row (key: Key("hum"),children: [ HumidityWidget(nombre: "1", humedad: 40.00) , ]);
 
-    var _items = [_lightTile, _tempTile];
+    var _items = [_lightTile, _tempTile,_humTile];
 
     return Scaffold(
         appBar: AppBar(

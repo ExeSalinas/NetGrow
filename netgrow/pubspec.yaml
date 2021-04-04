@@ -45,6 +45,9 @@ flutter:
    - assets\Imagenes\Sensores\Temperatura\Termometro.png
    - assets\Imagenes\Sensores\Temperatura\Termometro_Calor.png
    - assets\Imagenes\Sensores\Temperatura\Termometro_Frio.png
+   - assets\Imagenes\Sensores\Humedad\humidity.png
+   - assets\Imagenes\Sensores\HumSuelo\soil.png
+   -
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

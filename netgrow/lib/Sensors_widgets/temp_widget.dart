@@ -40,7 +40,7 @@ class _TemperatureWidgetState extends State<TemperatureWidget> {
               child: Row(
                 children: [
                   Expanded(
-                    child: Center(child: Text("$temp")),
+                    child: Center(child: Text("$temp" , style: Theme.of(context).textTheme.headline3,)),
                   ),
                   Expanded(
                     child: Image.asset(
