@@ -1,26 +1,29 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class TemperatureWidget extends StatefulWidget {
+class SoilWidget extends StatefulWidget {
   final nombre;
-  final double temperature;
+  final double humidity;
   final height;
-  TemperatureWidget(
+  SoilWidget(
       {Key? key,
       required this.nombre,
-      required this.temperature,
+      required this.humidity,
       this.height = 150.0})
       : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
-    return _TemperatureWidgetState();
+    return _SoilWidgetState();
   }
 }
 
-class _TemperatureWidgetState extends State<TemperatureWidget> {
-  late double temp;
+class _SoilWidgetState extends State<SoilWidget> {
+  late double hum;
+
+  @override
   void initState() {
-    temp = widget.temperature;
+    hum = widget.humidity;
     super.initState();
   }
 
@@ -51,13 +54,13 @@ class _TemperatureWidgetState extends State<TemperatureWidget> {
               flex: 1,
               child: Center(
                 child: Text(
-                  "temperatura ${widget.nombre}",
+                  "Humedad Suelo ${widget.nombre} ",
                   style: Theme.of(context).textTheme.headline6,
                 ),
               ),
             ),
             Expanded(
-              flex: 3,
+              flex: 2,
               child: Center(
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
@@ -68,7 +71,7 @@ class _TemperatureWidgetState extends State<TemperatureWidget> {
                       child: Padding(
                         padding: _paddingContent,
                         child: Text(
-                          "$temp",
+                          "$hum",
                           overflow: TextOverflow.visible,
                           style: Theme.of(context).textTheme.headline4,
                         ),
@@ -80,12 +83,7 @@ class _TemperatureWidgetState extends State<TemperatureWidget> {
                       child: Padding(
                         padding: _paddingContent,
                         child: Image.asset(
-                          (temp > 35.00)
-                              ? r'assets\Imagenes\Sensores\Temperatura\Termometro_Calor.png'
-                              : (temp < 5.00)
-                                  ? r'assets\Imagenes\Sensores\Temperatura\Termometro_Frio.png'
-                                  : r'assets\Imagenes\Sensores\Temperatura\Termometro.png',
-                        ),
+                            r'assets\Imagenes\Sensores\HumSuelo\soil.png'),
                       ),
                     ),
                   ],

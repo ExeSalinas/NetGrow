@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:netgrow/Sensors_widgets/humidity_widget.dart';
+import 'package:netgrow/Sensors_widgets/soil_widget.dart';
 import 'file:///F:/Git/NetGrow/netgrow/lib/Sensors_widgets/light_widget.dart';
 import 'package:netgrow/Sensors_widgets/temp_widget.dart';
 
@@ -43,11 +44,19 @@ class _DashboardRouteState extends State<DashboardRoute> {
         TemperatureWidget(nombre: "1", temperature: 40.00)
       ],
     ),);
+
+    var _soilTile = Center(key: Key("soil"),child: Wrap( spacing: 8.0, runSpacing: 8.0,  alignment: WrapAlignment.center,
+      key: Key("s"),
+      children: [
+        SoilWidget(nombre: 1, humidity: 40),SoilWidget(nombre: 2, humidity: 10),SoilWidget(nombre: 2, humidity: 10)
+      ],
+    ),);
+
     var _humTile = Row(key: Key("hum"), children: [
       HumidityWidget(nombre: "1", humedad: 40.00),
     ]);
 
-    var _items = [_lightTile, _tempTile, _humTile];
+    var _items = [_lightTile, _tempTile, _humTile, _soilTile];
 
     return Scaffold(
         appBar: AppBar(
@@ -69,7 +78,7 @@ class _DashboardRouteState extends State<DashboardRoute> {
             });
           },
 
-          children: _items,
+          children:,
         ));
   }
 }
