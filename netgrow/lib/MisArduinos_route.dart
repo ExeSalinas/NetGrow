@@ -60,8 +60,9 @@ class _MisArduinoState extends State {
                     child: Text("Agregar"),
                     onPressed: () {
                       // TODO AGREGAR ALA LISTAS DE ARDUINOS
-                      if (_formKey.currentState.validate()) {
-                        _formKey.currentState.save();
+                      // TODO REVISAR ESTE FORCEO ! DE CURRENT STATE
+                      if (_formKey.currentState!.validate()) {
+                        _formKey.currentState!.save();
                       }
                     },
                   ),

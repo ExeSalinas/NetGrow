@@ -5,7 +5,7 @@ import 'package:netgrow/Sensors_widgets/temp_widget.dart';
 
 // TODO AGREGAR PAGEVIEW
 class DashboardRoute extends StatefulWidget {
-  DashboardRoute({Key key, @required this.title}) : super(key: key);
+  DashboardRoute({Key? key, required this.title}) : super(key: key);
 
   // This class is the configuration for the state. It holds the values (in this
   // case the title) provided by the parent (in this case the App widget) and
@@ -34,14 +34,20 @@ class _DashboardRouteState extends State<DashboardRoute> {
           estado: true,
           nombre: "2",
         ),
-
       ],
     );
 
-    var _tempTile = Row (key: Key("Temp"),children: [ TemperatureWidget(nombre: "1", temperature: 40.00) ,  TemperatureWidget(nombre: "2", temperature: 30.00)],);
-    var _humTile = Row (key: Key("hum"),children: [ HumidityWidget(nombre: "1", humedad: 40.00) , ]);
+    var _tempTile = Center(key: Key("temp"),child: Wrap( spacing: 8.0, runSpacing: 8.0,  alignment: WrapAlignment.center,
+      key: Key("temp"),
+      children: [
+        TemperatureWidget(nombre: "1", temperature: 40.00)
+      ],
+    ),);
+    var _humTile = Row(key: Key("hum"), children: [
+      HumidityWidget(nombre: "1", humedad: 40.00),
+    ]);
 
-    var _items = [_lightTile, _tempTile,_humTile];
+    var _items = [_lightTile, _tempTile, _humTile];
 
     return Scaffold(
         appBar: AppBar(
@@ -49,22 +55,21 @@ class _DashboardRouteState extends State<DashboardRoute> {
           title: Text(widget.title),
         ),
         body: ReorderableListView(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            buildDefaultDragHandles: true,
-            // TODO - cambiar a false , para usar siempre lineas , no solo en desktop. para eso hay que hacer una funcion que cree los items dinamicamente
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          buildDefaultDragHandles: true,
+          // TODO - cambiar a false , para usar siempre lineas , no solo en desktop. para eso hay que hacer una funcion que cree los items dinamicamente
 
-            onReorder: (int oldIndex, int newIndex) {
-              setState(() {
-                if (oldIndex < newIndex) {
-                  newIndex -= 1;
-                }
-                final item = _items.removeAt(oldIndex);
-                _items.insert(newIndex, item);
-              });
-            },
+          onReorder: (int oldIndex, int newIndex) {
+            setState(() {
+              if (oldIndex < newIndex) {
+                newIndex -= 1;
+              }
+              final item = _items.removeAt(oldIndex);
+              _items.insert(newIndex, item);
+            });
+          },
 
-            children: _items,
-
-            ));
+          children: _items,
+        ));
   }
 }

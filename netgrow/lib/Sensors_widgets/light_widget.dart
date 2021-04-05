@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class LightWidget extends StatefulWidget {
   final bool estado;
   final nombre;
-  LightWidget({Key key, @required this.estado, @required this.nombre})
+  LightWidget({Key? key, required this.estado, required this.nombre})
       : assert(estado != null),
         assert(nombre != null),
         super(key: key);

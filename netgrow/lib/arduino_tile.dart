@@ -9,9 +9,8 @@ const _color = Colors.lightBlueAccent;
 class ArduinoTile extends StatelessWidget {
   final Arduino arduino;
 
-  const ArduinoTile({Key key, @required this.arduino})
-      : assert(arduino != null),
-        super(key: key);
+  const ArduinoTile({Key? key, required this.arduino})
+      : super(key: key);
 
   //Navigate to the [DashboardRoute]
   void _navigateToDashboard(BuildContext context) {
