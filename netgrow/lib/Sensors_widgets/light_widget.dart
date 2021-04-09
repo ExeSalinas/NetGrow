@@ -51,10 +51,9 @@ class _LightWidgetState extends State<LightWidget> {
     var card = InkWell(
       onTap: _cardTap,
       child: Card(
-        shadowColor: Colors.grey.shade400,
-        elevation: 12.0,
-        shape: BeveledRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(8.0))),
+
+
+
         child: Padding(
           padding: _cardPadding,
           child: Column(

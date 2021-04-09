@@ -66,10 +66,14 @@ class _DashboardRouteState extends State<DashboardRoute> {
         title: Text(widget.title),
       ),
       body: ReorderableListView(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
+        header: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Text("Informacion de tu Vivero", style: Theme.of(context).textTheme.headline4, textAlign: TextAlign.center,),
+        ),
+        padding: const EdgeInsets.all(20),
         buildDefaultDragHandles: true,
         // TODO - cambiar a false , para usar siempre lineas , no solo en desktop. para eso hay que hacer una funcion que cree los items dinamicamente
-
+        
         onReorder: (int oldIndex, int newIndex) {
           setState(() {
             if (oldIndex < newIndex) {
@@ -81,12 +85,15 @@ class _DashboardRouteState extends State<DashboardRoute> {
         },
         children: <Widget>[
           for (int index = 0; index < _sensores.length; index++)
-            Wrap(
-              key: Key("$index"),
-              spacing: 8.0,
-              runSpacing: 8.0,
-              alignment: WrapAlignment.center,
-              children: _sensores[index],
+            Padding(key: Key("$index"),
+              padding: const EdgeInsets.symmetric(vertical: 4.0),
+              child: Wrap(
+
+                spacing: 8.0,
+                runSpacing: 4.0,
+                alignment: WrapAlignment.center,
+                children: _sensores[index],
+              ),
             )
         ],
       ),

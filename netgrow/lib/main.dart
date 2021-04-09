@@ -14,6 +14,12 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Net Grow',
       theme: ThemeData(
+        buttonColor: Colors.lightGreen,
+        canvasColor: Colors.amberAccent,
+        cardColor: Colors.white70,
+        cardTheme: CardTheme(elevation: 12 , shape: BeveledRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(8.0))),  shadowColor: Colors.grey.shade400, ),
+
 
         primarySwatch: Colors.lightGreen,
       ),
