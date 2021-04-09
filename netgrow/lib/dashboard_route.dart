@@ -29,7 +29,10 @@ class _DashboardRouteState extends State<DashboardRoute> {
           LightWidget(
             estado: true,
             nombre: "1",
-          ),
+          ),LightWidget(
+          estado: true,
+          nombre: "2",
+        ),
         ]
       ;
 
@@ -49,7 +52,6 @@ class _DashboardRouteState extends State<DashboardRoute> {
       var _humTile = [
         HumidityWidget(nombre: "1", humedad: 40.00),
       ];
-      // TODO : REFACTOR LIGHT Y HUMDITY son un expanded dentro de un wrap y eso esta pal traste
 
       _sensores = [ _lightTile,_humTile, _tempTile, _soilTile];
     });

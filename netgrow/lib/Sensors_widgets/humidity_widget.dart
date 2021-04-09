@@ -7,9 +7,13 @@ class HumidityWidget extends StatefulWidget {
   final double height;
   final int widthScreenFactor;
   final int widthLandscapeScreenFactor;
-  HumidityWidget({Key? key, required this.nombre, required this.humedad,this.height = 150.0,
-    this.widthScreenFactor = 1 ,
-    this.widthLandscapeScreenFactor = 1})
+  HumidityWidget(
+      {Key? key,
+      required this.nombre,
+      required this.humedad,
+      this.height = 150.0,
+      this.widthScreenFactor = 1,
+      this.widthLandscapeScreenFactor = 1})
       : super(key: key);
 
   @override
@@ -73,7 +77,8 @@ class _HumiditWidgetState extends State<HumidityWidget> {
                         ),
                       ),
                     ),
-                    Flexible(  fit: FlexFit.loose,
+                    Flexible(
+                      fit: FlexFit.loose,
                       child: Padding(
                         padding: _padding,
                         child: Image.asset(
@@ -89,16 +94,13 @@ class _HumiditWidgetState extends State<HumidityWidget> {
         ),
       ),
     );
-    return ConstrainedBox(
-        constraints: BoxConstraints(
-            maxHeight: widget.height,
-            minWidth: 170,
-            maxWidth:
-            (MediaQuery.of(context).orientation == Orientation.portrait)
-                ? (deviceWidth / widget.widthScreenFactor) -
-                (_cardSidesPadding * 2)
-                : (deviceWidth / widget.widthLandscapeScreenFactor) -
-                (_cardSidesPadding * 2)),
-        child: card);
+    return Container(
+      width: (MediaQuery.of(context).orientation == Orientation.portrait)
+          ? ((deviceWidth / widget.widthScreenFactor) - (_cardSidesPadding * 2))
+          : ((deviceWidth / widget.widthLandscapeScreenFactor) -
+              (_cardSidesPadding * 2)),
+      height: 150,
+      child: card,
+    );
   }
 }

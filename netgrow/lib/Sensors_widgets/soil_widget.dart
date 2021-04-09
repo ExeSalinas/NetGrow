@@ -4,12 +4,16 @@ import 'package:flutter/material.dart';
 class SoilWidget extends StatefulWidget {
   final nombre;
   final double humidity;
-  final height;
+  final double height;
+  final int widthScreenFactor;
+  final int widthLandscapeScreenFactor;
   SoilWidget(
       {Key? key,
       required this.nombre,
       required this.humidity,
-      this.height = 150.0})
+      this.height = 150.0,
+      this.widthScreenFactor = 2,
+      this.widthLandscapeScreenFactor = 3})
       : super(key: key);
 
   @override
@@ -94,14 +98,13 @@ class _SoilWidgetState extends State<SoilWidget> {
         ),
       ),
     );
-    return ConstrainedBox(
-        constraints: BoxConstraints(
-            maxHeight: widget.height,
-            minWidth: 170,
-            maxWidth:
-                (MediaQuery.of(context).orientation == Orientation.portrait)
-                    ? deviceWidth / 2 - (_cardSidesPadding * 2)
-                    : deviceWidth / 3 - (_cardSidesPadding * 2)),
-        child: card);
+    return Container(
+      width: (MediaQuery.of(context).orientation == Orientation.portrait)
+          ? ((deviceWidth / widget.widthScreenFactor) - (_cardSidesPadding * 2))
+          : ((deviceWidth / widget.widthLandscapeScreenFactor) -
+              (_cardSidesPadding * 2)),
+      height: 150,
+      child: card,
+    );
   }
 }
