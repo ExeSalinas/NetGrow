@@ -4,10 +4,13 @@ import 'package:flutter/material.dart';
 class HumidityWidget extends StatefulWidget {
   final String nombre;
   final humedad;
-  HumidityWidget({Key? key, required this.nombre, required this.humedad})
-      : assert(nombre != null),
-        assert(humedad != null),
-        super(key: key);
+  final double height;
+  final int widthScreenFactor;
+  final int widthLandscapeScreenFactor;
+  HumidityWidget({Key? key, required this.nombre, required this.humedad,this.height = 150.0,
+    this.widthScreenFactor = 1 ,
+    this.widthLandscapeScreenFactor = 1})
+      : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
@@ -26,6 +29,12 @@ class _HumiditWidgetState extends State<HumidityWidget> {
   @override
   Widget build(BuildContext context) {
     const _padding = EdgeInsets.symmetric(vertical: 5.0, horizontal: 8.0);
+    const _cardSidesPadding = 12.0;
+    const _cardPadding = EdgeInsets.fromLTRB(
+        _cardSidesPadding, _cardSidesPadding, _cardSidesPadding, 6);
+
+    double deviceWidth = MediaQuery.of(context).size.width;
+    double deviceHeight = MediaQuery.of(context).size.height;
 
     var card = Card(
       shadowColor: Colors.grey.shade400,
@@ -80,9 +89,16 @@ class _HumiditWidgetState extends State<HumidityWidget> {
         ),
       ),
     );
-    return Flexible(
-      fit: FlexFit.tight,
-      child: Container(padding: EdgeInsets.all(8.0), height: 150, child: card),
-    );
+    return ConstrainedBox(
+        constraints: BoxConstraints(
+            maxHeight: widget.height,
+            minWidth: 170,
+            maxWidth:
+            (MediaQuery.of(context).orientation == Orientation.portrait)
+                ? (deviceWidth / widget.widthScreenFactor) -
+                (_cardSidesPadding * 2)
+                : (deviceWidth / widget.widthLandscapeScreenFactor) -
+                (_cardSidesPadding * 2)),
+        child: card);
   }
 }

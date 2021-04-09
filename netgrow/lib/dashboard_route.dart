@@ -21,64 +21,73 @@ class DashboardRoute extends StatefulWidget {
 
 class _DashboardRouteState extends State<DashboardRoute> {
   // int _counter = 0;
+  var _sensores = [];
+  @override
+  void initState() {
+    setState(() {
+      var _lightTile =  [
+          LightWidget(
+            estado: true,
+            nombre: "1",
+          ),
+        ]
+      ;
+
+      var _tempTile = [
+          TemperatureWidget(nombre: "1", temperature: 40.00),
+        TemperatureWidget(nombre: "1", temperature: 40.00),
+        TemperatureWidget(nombre: "1", temperature: 40.00),
+        ]
+      ;
+
+      var _soilTile =  [
+          SoilWidget(nombre: 1, humidity: 40),
+          SoilWidget(nombre: 2, humidity: 10),
+          SoilWidget(nombre: 2, humidity: 10)
+        ];
+
+      var _humTile = [
+        HumidityWidget(nombre: "1", humedad: 40.00),
+      ];
+      // TODO : REFACTOR LIGHT Y HUMDITY son un expanded dentro de un wrap y eso esta pal traste
+
+      _sensores = [ _lightTile,_humTile, _tempTile, _soilTile];
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
-    var _lightTile = Row(
-      key: Key("Light"),
-      children: [
-        LightWidget(
-          estado: true,
-          nombre: "1",
-        ),
-        LightWidget(
-          estado: true,
-          nombre: "2",
-        ),
-      ],
-    );
-
-    var _tempTile = Center(key: Key("temp"),child: Wrap( spacing: 8.0, runSpacing: 8.0,  alignment: WrapAlignment.center,
-      key: Key("temp"),
-      children: [
-        TemperatureWidget(nombre: "1", temperature: 40.00)
-      ],
-    ),);
-
-    var _soilTile = Center(key: Key("soil"),child: Wrap( spacing: 8.0, runSpacing: 8.0,  alignment: WrapAlignment.center,
-      key: Key("s"),
-      children: [
-        SoilWidget(nombre: 1, humidity: 40),SoilWidget(nombre: 2, humidity: 10),SoilWidget(nombre: 2, humidity: 10)
-      ],
-    ),);
-
-    var _humTile = Row(key: Key("hum"), children: [
-      HumidityWidget(nombre: "1", humedad: 40.00),
-    ]);
-
-    var _items = [_lightTile, _tempTile, _humTile, _soilTile];
-
     return Scaffold(
-        appBar: AppBar(
-          centerTitle: true,
-          title: Text(widget.title),
-        ),
-        body: ReorderableListView(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          buildDefaultDragHandles: true,
-          // TODO - cambiar a false , para usar siempre lineas , no solo en desktop. para eso hay que hacer una funcion que cree los items dinamicamente
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text(widget.title),
+      ),
+      body: ReorderableListView(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        buildDefaultDragHandles: true,
+        // TODO - cambiar a false , para usar siempre lineas , no solo en desktop. para eso hay que hacer una funcion que cree los items dinamicamente
 
-          onReorder: (int oldIndex, int newIndex) {
-            setState(() {
-              if (oldIndex < newIndex) {
-                newIndex -= 1;
-              }
-              final item = _items.removeAt(oldIndex);
-              _items.insert(newIndex, item);
-            });
-          },
-
-          children:,
-        ));
+        onReorder: (int oldIndex, int newIndex) {
+          setState(() {
+            if (oldIndex < newIndex) {
+              newIndex -= 1;
+            }
+            final item = _sensores.removeAt(oldIndex);
+            _sensores.insert(newIndex, item);
+          });
+        },
+        children: <Widget>[
+          for (int index = 0; index < _sensores.length; index++)
+            Wrap(
+              key: Key("$index"),
+              spacing: 8.0,
+              runSpacing: 8.0,
+              alignment: WrapAlignment.center,
+              children: _sensores[index],
+            )
+        ],
+      ),
+    );
   }
 }

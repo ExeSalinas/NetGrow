@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:netgrow/arduino.dart';
+import 'package:netgrow/Entities/arduino.dart';
 import 'package:netgrow/dashboard_route.dart';
 
 //Constantes

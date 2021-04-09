@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:netgrow/arduino_tile.dart';
 
-import 'arduino.dart';
+import 'Entities/arduino.dart';
 
 // Constantes
 List<Arduino> arduinos = [
@@ -17,60 +17,93 @@ class MisArduino extends StatefulWidget {
 }
 
 class _MisArduinoState extends State {
-
   //TODO  aprender sobre las keys
+  // Create a global key that uniquely identifies the Form widget
+  // and allows validation of the form.
   final _formKey = GlobalKey<FormState>();
+  final _paddingTextForms = EdgeInsets.all(8.0);
 
   void _addButonPressed(BuildContext context) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        return AlertDialog(content: Stack( clipBehavior: Clip.none, children: <Widget>[
-          //Cruz roja:  Cierra el dialog
-          Positioned(
-            right: -40.0,
-            top: -40.0,
-            child: InkResponse(
-              onTap: () {
-                Navigator.of(context).pop();
-              },
-              child: CircleAvatar(
-                child: Icon(Icons.close),
-                backgroundColor: Colors.red.shade700,
-              ),
-            ),
-          ),
-          Form(
-            // TODO Revisar las propiedades del FORM
-            key: _formKey,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: TextFormField(),
-                ),
-                Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: TextFormField(),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: ElevatedButton(
-                    child: Text("Agregar"),
-                    onPressed: () {
-                      // TODO AGREGAR ALA LISTAS DE ARDUINOS
-                      // TODO REVISAR ESTE FORCEO ! DE CURRENT STATE
-                      if (_formKey.currentState!.validate()) {
-                        _formKey.currentState!.save();
-                      }
-                    },
+        return AlertDialog(
+          content: Stack(
+            clipBehavior: Clip.none,
+            children: <Widget>[
+              //Cruz roja:  Cierra el dialog
+              Positioned(
+                right: -40.0,
+                top: -40.0,
+                child: InkResponse(
+                  onTap: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: CircleAvatar(
+                    child: Icon(Icons.close),
+                    backgroundColor: Colors.red.shade700,
                   ),
-                )
-              ],
-            ),
+                ),
+              ),
+              Form(
+                // TODO Revisar las propiedades del FORM
+                key: _formKey,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    // Text form nombre del dispositivo
+                    Padding(
+                      padding: _paddingTextForms,
+                      child: TextFormField(
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(),
+                          hintText: 'Nombre para este dispositivo',
+                          labelText: 'Nombre'
+                        ),
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Por favor ingrese un nombre';
+                          }
+                          return null;
+                        },
+                      ),
+                    ),
+                    // Text form codigo de conexion del dispositivo
+                    Padding(
+                      padding: _paddingTextForms,
+                      child: TextFormField(
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(),
+                          hintText: 'Código de conexion', labelText: 'Código'
+                        ),
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Por favor ingrese un codigo de conexion';
+                          }
+                          return null;
+                        },
+                      ),
+                    ),
+                    Padding(
+                      padding: _paddingTextForms,
+                      child: ElevatedButton(
+                        child: Text("Agregar"),
+                        onPressed: () {
+                          // TODO AGREGAR ALA LISTAS DE ARDUINOS
+                          if (_formKey.currentState!.validate()) {
+                             _formKey.currentState!.save();
+                            ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(content: Text('Agregado un nuevo dispositivo a mi lista')));
+                          }
+                        },
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ],
           ),
-        ],),);
+        );
       },
     );
   }
@@ -84,12 +117,11 @@ class _MisArduinoState extends State {
       ),
       body: ListView(
         children: [
-          ArduinoTile(arduino: arduinos[0]),
-          ArduinoTile(arduino: arduinos[1])
+          ArduinoTile(arduino: arduinos[0],),
+          ArduinoTile( arduino: arduinos[1])
         ],
       ),
       floatingActionButton: FloatingActionButton(
-
         child: Icon(Icons.add),
         tooltip: "Registrar un Nuevo dispositivo",
         onPressed: () => _addButonPressed(context),

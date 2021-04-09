@@ -3,12 +3,16 @@ import 'package:flutter/material.dart';
 class TemperatureWidget extends StatefulWidget {
   final nombre;
   final double temperature;
-  final height;
+  final double height;
+  final int widthScreenFactor;
+  final int widthLandscapeScreenFactor;
   TemperatureWidget(
       {Key? key,
       required this.nombre,
       required this.temperature,
-      this.height = 150.0})
+      this.height = 150.0,
+      this.widthScreenFactor = 2,
+      this.widthLandscapeScreenFactor = 3})
       : super(key: key);
 
   @override
@@ -102,8 +106,10 @@ class _TemperatureWidgetState extends State<TemperatureWidget> {
             minWidth: 170,
             maxWidth:
                 (MediaQuery.of(context).orientation == Orientation.portrait)
-                    ? deviceWidth / 2 - (_cardSidesPadding * 2)
-                    : deviceWidth / 3 - (_cardSidesPadding * 2)),
+                    ? (deviceWidth / widget.widthScreenFactor) -
+                        (_cardSidesPadding * 2)
+                    : (deviceWidth / widget.widthLandscapeScreenFactor) -
+                        (_cardSidesPadding * 2)),
         child: card);
   }
 }
