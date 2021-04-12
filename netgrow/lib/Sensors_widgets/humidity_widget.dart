@@ -7,13 +7,16 @@ class HumidityWidget extends StatefulWidget {
   final double height;
   final int widthScreenFactor;
   final int widthLandscapeScreenFactor;
+  //Variable de mierda que solo
+  final double fatherpadding;
   HumidityWidget(
       {Key? key,
       required this.nombre,
       required this.humedad,
       this.height = 150.0,
       this.widthScreenFactor = 1,
-      this.widthLandscapeScreenFactor = 1})
+      this.widthLandscapeScreenFactor = 1 ,
+      this.fatherpadding = 16.0})
       : super(key: key);
 
   @override
@@ -32,7 +35,7 @@ class _HumiditWidgetState extends State<HumidityWidget> {
 
   @override
   Widget build(BuildContext context) {
-    const _padding = EdgeInsets.symmetric(vertical: 5.0, horizontal: 8.0);
+    const _padding = EdgeInsets.symmetric(vertical: 5.0, horizontal: 6.0);
     const _cardSidesPadding = 12.0;
     const _cardPadding = EdgeInsets.fromLTRB(
         _cardSidesPadding, _cardSidesPadding, _cardSidesPadding, 6);
@@ -41,13 +44,6 @@ class _HumiditWidgetState extends State<HumidityWidget> {
     double deviceHeight = MediaQuery.of(context).size.height;
 
     var card = Card(
-      shadowColor: Colors.grey.shade400,
-      elevation: 12.0,
-      shape: BeveledRectangleBorder(
-        borderRadius: BorderRadius.all(
-          Radius.circular(8.0),
-        ),
-      ),
       child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -68,7 +64,8 @@ class _HumiditWidgetState extends State<HumidityWidget> {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Flexible(
-                      fit: FlexFit.loose,
+                      fit: FlexFit.tight,flex: 5,
+
                       child: Padding(
                         padding: _padding,
                         child: Text(
@@ -78,7 +75,7 @@ class _HumiditWidgetState extends State<HumidityWidget> {
                       ),
                     ),
                     Flexible(
-                      fit: FlexFit.loose,
+                      fit: FlexFit.loose, flex: 4,
                       child: Padding(
                         padding: _padding,
                         child: Image.asset(
@@ -96,9 +93,9 @@ class _HumiditWidgetState extends State<HumidityWidget> {
     );
     return Container(
       width: (MediaQuery.of(context).orientation == Orientation.portrait)
-          ? ((deviceWidth / widget.widthScreenFactor) - (_cardSidesPadding * 2))
-          : ((deviceWidth / widget.widthLandscapeScreenFactor) -
-              (_cardSidesPadding * 2)),
+          ? ((deviceWidth / widget.widthScreenFactor) - (_cardSidesPadding * 2) - widget.fatherpadding )
+          : ((deviceWidth / widget.widthLandscapeScreenFactor ) -
+              (_cardSidesPadding * 2) - widget.fatherpadding*2),
       height: 150,
       child: card,
     );

@@ -43,13 +43,6 @@ class _SoilWidgetState extends State<SoilWidget> {
     double deviceHeight = MediaQuery.of(context).size.height;
 
     var card = Card(
-      shadowColor: Colors.grey.shade400,
-      elevation: 12.0,
-      shape: BeveledRectangleBorder(
-        borderRadius: BorderRadius.all(
-          Radius.circular(8.0),
-        ),
-      ),
       child: Padding(
         padding: _cardPadding,
         child: Column(

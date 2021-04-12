@@ -51,9 +51,6 @@ class _LightWidgetState extends State<LightWidget> {
     var card = InkWell(
       onTap: _cardTap,
       child: Card(
-
-
-
         child: Padding(
           padding: _cardPadding,
           child: Column(

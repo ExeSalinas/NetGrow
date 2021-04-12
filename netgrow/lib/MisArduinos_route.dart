@@ -31,20 +31,6 @@ class _MisArduinoState extends State {
           content: Stack(
             clipBehavior: Clip.none,
             children: <Widget>[
-              //Cruz roja:  Cierra el dialog
-              Positioned(
-                right: -40.0,
-                top: -40.0,
-                child: InkResponse(
-                  onTap: () {
-                    Navigator.of(context).pop();
-                  },
-                  child: CircleAvatar(
-                    child: Icon(Icons.close),
-                    backgroundColor: Colors.red.shade700,
-                  ),
-                ),
-              ),
               Form(
                 // TODO Revisar las propiedades del FORM
                 key: _formKey,
@@ -101,6 +87,19 @@ class _MisArduinoState extends State {
                   ],
                 ),
               ),
+              Positioned(
+                right: -40.0,
+                top: -40.0,
+                child: InkResponse(
+                  onTap: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: CircleAvatar(
+                    child: Icon(Icons.close),
+                    backgroundColor: Colors.red.shade700,
+                  ),
+                ),
+              ),
             ],
           ),
         );
@@ -113,7 +112,7 @@ class _MisArduinoState extends State {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('Mis Arduino'),
+        title: Text('Mis Arduino' , style: Theme.of(context).textTheme.headline5),
       ),
       body: ListView(
         children: [
@@ -122,6 +121,7 @@ class _MisArduinoState extends State {
         ],
       ),
       floatingActionButton: FloatingActionButton(
+
         child: Icon(Icons.add),
         tooltip: "Registrar un Nuevo dispositivo",
         onPressed: () => _addButonPressed(context),

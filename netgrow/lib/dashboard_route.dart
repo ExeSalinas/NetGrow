@@ -25,52 +25,63 @@ class _DashboardRouteState extends State<DashboardRoute> {
   @override
   void initState() {
     setState(() {
-      var _lightTile =  [
-          LightWidget(
-            estado: true,
-            nombre: "1",
-          ),LightWidget(
-          estado: true,
-          nombre: "2",
-        ),
-        ]
-      ;
 
-      var _tempTile = [
-          TemperatureWidget(nombre: "1", temperature: 40.00),
-        TemperatureWidget(nombre: "1", temperature: 40.00),
-        TemperatureWidget(nombre: "1", temperature: 40.00),
-        ]
-      ;
-
-      var _soilTile =  [
-          SoilWidget(nombre: 1, humidity: 40),
-          SoilWidget(nombre: 2, humidity: 10),
-          SoilWidget(nombre: 2, humidity: 10)
-        ];
-
-      var _humTile = [
-        HumidityWidget(nombre: "1", humedad: 40.00),
-      ];
-
-      _sensores = [ _lightTile,_humTile, _tempTile, _soilTile];
     });
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+
+
+    var _lightTile =  [
+      LightWidget(
+        estado: true,
+        nombre: "1",
+      ),LightWidget(
+        estado: true,
+        nombre: "2",
+      ),
+    ]
+    ;
+
+    var _tempTile = [
+      TemperatureWidget(nombre: "1", temperature: 40.00),
+      TemperatureWidget(nombre: "1", temperature: 40.00),
+      TemperatureWidget(nombre: "1", temperature: 40.00),
+    ]
+    ;
+
+    var _soilTile =  [
+      SoilWidget(nombre: 1, humidity: 40),
+      SoilWidget(nombre: 2, humidity: 10),
+      SoilWidget(nombre: 2, humidity: 10)
+    ];
+
+    var _humTile = [
+      HumidityWidget(nombre: "1", humedad: 40.00),
+    ];
+
+    _sensores = [ _lightTile,_humTile, _tempTile, _soilTile];
+
+
+
+
+
+
+
+
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text(widget.title),
+        title: Text(widget.title ,style: Theme.of(context).textTheme.headline5,),
       ),
       body: ReorderableListView(
         header: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Text("Informacion de tu Vivero", style: Theme.of(context).textTheme.headline4, textAlign: TextAlign.center,),
         ),
-        padding: const EdgeInsets.all(20),
+        padding: const EdgeInsets.all(8.0),
         buildDefaultDragHandles: true,
         // TODO - cambiar a false , para usar siempre lineas , no solo en desktop. para eso hay que hacer una funcion que cree los items dinamicamente
         
