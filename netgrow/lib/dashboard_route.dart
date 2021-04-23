@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:netgrow/Sensors_widgets/humidity_widget.dart';
 import 'package:netgrow/Sensors_widgets/soil_widget.dart';
-import 'file:///F:/Git/NetGrow/netgrow/lib/Sensors_widgets/light_widget.dart';
+import 'package:netgrow/Sensors_widgets/light_widget.dart';
 import 'package:netgrow/Sensors_widgets/temp_widget.dart';
 
 // TODO AGREGAR PAGEVIEW

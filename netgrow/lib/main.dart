@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:netgrow/MisArduinos_route.dart';
 import 'package:netgrow/dashboard_route.dart';
 import 'package:google_fonts/google_fonts.dart';
+// Import the firebase_core plugin
+import 'package:firebase_core/firebase_core.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(MyApp());
 }
 
@@ -18,10 +21,10 @@ class MyApp extends StatelessWidget {
         GoogleFonts.merriweather(fontSize: 44, fontWeight: FontWeight.w400),
     headline4: GoogleFonts.merriweather(
         fontSize: 28, fontWeight: FontWeight.w400, letterSpacing: 0.25),
-    headline5:
-        GoogleFonts.merriweather(fontSize: 23, fontWeight: FontWeight.w400,color: Colors.white),
+    headline5: GoogleFonts.merriweather(
+        fontSize: 23, fontWeight: FontWeight.w400, color: Colors.white),
     headline6: GoogleFonts.merriweather(
-        fontSize: 21, fontWeight: FontWeight.w500, letterSpacing: 0.15),
+        fontSize: 18, fontWeight: FontWeight.w500, letterSpacing: 0.15),
     subtitle1: GoogleFonts.merriweather(
         fontSize: 17, fontWeight: FontWeight.w400, letterSpacing: 0.15),
     subtitle2: GoogleFonts.merriweather(
@@ -31,17 +34,18 @@ class MyApp extends StatelessWidget {
     bodyText2: GoogleFonts.titilliumWeb(
         fontSize: 18, fontWeight: FontWeight.w400, letterSpacing: 0.25),
     button: GoogleFonts.titilliumWeb(
-        fontSize: 26, fontWeight: FontWeight.w500, letterSpacing: 1.25),
+        fontSize: 18, fontWeight: FontWeight.w500, letterSpacing: 1.25),
     caption: GoogleFonts.titilliumWeb(
         fontSize: 15, fontWeight: FontWeight.w400, letterSpacing: 0.4),
     overline: GoogleFonts.titilliumWeb(
         fontSize: 14, fontWeight: FontWeight.w400, letterSpacing: 1.5),
   );
 
-  // This widget is the root of your application.
+  final Future<FirebaseApp> _initialization = Firebase.initializeApp();
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+   Widget app = MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Net Grow',
       theme: ThemeData(
@@ -70,5 +74,24 @@ class MyApp extends StatelessWidget {
       ),
       home: MisArduino(),
     );
+    return FutureBuilder(
+      // Initialize FlutterFire:
+      future: _initialization,
+      builder: (context, snapshot) {
+        // Check for errors
+        if (snapshot.hasError) {
+          return Container(color: Colors.red,);
+        }
+
+        // Once complete, show your application
+        if (snapshot.connectionState == ConnectionState.done) {
+          return app;
+        }
+
+        // Otherwise, show something whilst waiting for initialization to complete
+        return Container(color: Colors.yellow,);
+      },
+    );
+
   }
 }

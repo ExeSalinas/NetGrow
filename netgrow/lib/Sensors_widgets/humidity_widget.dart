@@ -63,15 +63,11 @@ class _HumiditWidgetState extends State<HumidityWidget> {
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Flexible(
-                      fit: FlexFit.tight,flex: 5,
-
-                      child: Padding(
-                        padding: _padding,
-                        child: Text(
-                          "$hum %",
-                          style: Theme.of(context).textTheme.headline3,
-                        ),
+                    Padding(
+                      padding: _padding,
+                      child: Text(
+                        "$hum %",
+                        style: Theme.of(context).textTheme.headline3,
                       ),
                     ),
                     Flexible(

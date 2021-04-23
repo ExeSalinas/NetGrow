@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "722283765036",
+    "project_id": "net-grow-ece02",
+    "storage_bucket": "net-grow-ece02.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:722283765036:android:e0c265f39836266f98a089",
+        "android_client_info": {
+          "package_name": "com.example.netgrow"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "722283765036-v1q0e2617c59445vbt4i97niv26cb17v.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.netgrow",
+            "certificate_hash": "c4d926bcd608f4301d5daecc42e6bdcf62e0cabb"
+          }
+        },
+        {
+          "client_id": "722283765036-po9pdo0tk3r8j6c5i7d3rgqt6e87f12u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBou6gjWpu3iHxmHQe7zzflqtEKVYpkzrw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "722283765036-po9pdo0tk3r8j6c5i7d3rgqt6e87f12u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

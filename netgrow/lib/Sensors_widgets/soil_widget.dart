@@ -62,16 +62,12 @@ class _SoilWidgetState extends State<SoilWidget> {
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Flexible(
-                      fit: FlexFit.loose,
-                      flex: 5,
-                      child: Padding(
-                        padding: _paddingContent,
-                        child: Text(
-                          "$hum",
-                          overflow: TextOverflow.visible,
-                          style: Theme.of(context).textTheme.headline4,
-                        ),
+                    Padding(
+                      padding: _paddingContent,
+                      child: Text(
+                        "$hum",
+                        overflow: TextOverflow.visible,
+                        style: Theme.of(context).textTheme.headline4,
                       ),
                     ),
                     Flexible(
